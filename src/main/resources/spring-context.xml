@@ -3,4 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+       <bean id="executorService" class="java.util.concurrent.ThreadPoolExecutor">
+        <constructor-arg name="corePoolSize" value="6"/>
+        <constructor-arg name="maximumPoolSize" value="12"/>
+        <constructor-arg name="keepAliveTime" value="30"/>
+        <constructor-arg name="unit" value="SECONDS"/>
+        <constructor-arg name="workQueue" ref="queue"/>
+    </bean>
+
+    <bean id="queue" class="java.util.concurrent.ArrayBlockingQueue">
+        <constructor-arg name="capacity" value="20"/>
+    </bean>
 </beans>
